@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Менеджер задач</title>
+</head>
+<body>
+    <h1>Мои задачи</h1>
+    <form action="/add" method="POST">
+        <input name="title" placeholder="Новая задача" required>
+        <button type="submit">Добавить</button>
+    </form>
+    <ul>
+        {% for t in tasks %}
+        <li>
+            {% if t.done %}<s>{{ t.title }}</s>{% else %}{{ t.title }}{% endif %}
+            {% if not t.done %}<a href="/done/{{ t.id }}">✅</a>{% endif %}
+            <a href="/delete/{{ t.id }}">❌</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
