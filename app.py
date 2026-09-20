@@ -41,8 +41,12 @@ def delete(id):
     conn.close()
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
+def init_db():
     conn = sqlite3.connect('todo.db')
     conn.execute("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, done INTEGER DEFAULT 0)")
     conn.close()
+
+init_db()
+
+if __name__ == '__main__':
     app.run(debug=True)
